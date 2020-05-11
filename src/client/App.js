@@ -1,23 +1,24 @@
 import React, { Component } from 'react';
 import './app.css';
-import ReactImage from './react.png';
+import { ThemeProvider } from 'emotion-theming';
+import theme from '@rebass/preset';
+import { BrowserRouter, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import About from './pages/About';
 
 export default class App extends Component {
-  state = { username: null };
-
-  componentDidMount() {
-    fetch('/api/getUsername')
-      .then(res => res.json())
-      .then(user => this.setState({ username: user.username }));
+  constructor() {
+    super();
   }
 
   render() {
-    const { username } = this.state;
     return (
-      <div>
-        {username ? <h1>{`Hello ${username}`}</h1> : <h1>Loading.. please wait!</h1>}
-        <img src={ReactImage} alt="react" />
-      </div>
+      <BrowserRouter>
+        <ThemeProvider className="App" theme={theme}>
+          <Route exact path="/" component={Home} />
+          <Route path="/about" component={About} />
+        </ThemeProvider>
+      </BrowserRouter>
     );
   }
 }
