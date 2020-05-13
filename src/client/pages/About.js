@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Box, Card, Image, Heading, Text, Flex } from 'rebass';
 import Navbar from '../components/Navbar';
+import randomPic from '../hoc/randomPic';
 
-const About = () => {
+const About = (props) => {
     return (
       <React.Fragment>
         <Navbar />
@@ -14,6 +15,9 @@ const About = () => {
                 borderRadius: 2,
                 boxShadow: '0 0 16px rgba(0, 0, 0, .25)',
               }}>
+                <Box width={1/2} mx='auto'>
+                  <Image src={props.randomPic} />
+                </Box>
                 <Box p={4} width={1/2} mx='auto'>
                   <Heading as='h1'>
                     We are F-Society!
@@ -29,4 +33,4 @@ const About = () => {
     );
 }
 
-export default About;
+export default randomPic(About);

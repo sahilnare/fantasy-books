@@ -18,6 +18,10 @@ class Home extends Component {
     }
   }
 
+  componentDidMount() {
+    // console.log(this.props);
+  }
+
   deleteBook = (id) => {
     console.log(id);
     const books = this.state.books.filter(book => {
