@@ -1,26 +1,13 @@
 import React, { Component } from 'react';
 import { Box, Card, Heading, Text, Flex } from 'rebass';
 import Navbar from './Navbar';
-import axios from 'axios';
+import { connect } from 'react-redux';
 
 class House extends Component {
-  constructor() {
-    super();
-    this.state = {
-      house: null
-    }
-  }
-
-  componentDidMount() {
-    const id = this.props.match.params.house_id;
-    axios.get('https://www.anapioficeandfire.com/api/houses/' + id)
-      .then(res => {
-        this.setState({house: res.data});
-      })
-  }
 
   render() {
-    const house = this.state.house ? (
+    console.log(this.props.house);
+    const house = this.props.house.name ? (
       <Card
         sx={{
           p: 3,
@@ -28,16 +15,16 @@ class House extends Component {
           boxShadow: '0 0 16px rgba(0, 0, 0, .25)',
         }} my={2}>
         <Heading as='h1' fontSize={5} my={2}>
-          {this.state.house.name}
+          {this.props.house.name}
         </Heading>
         <Text fontSize={4} mt={2} mb={2}>
-          Region: {this.state.house.region}
+          Region: {this.props.house.region}
         </Text>
         <Text fontSize={4} mt={2} mb={2}>
-          Coat of arms: {this.state.house.coatOfArms}
+          Coat of arms: {this.props.house.coatOfArms}
         </Text>
         <Text fontSize={4} mt={2} mb={2}>
-          Words: {this.state.house.words}
+          Words: {this.props.house.words}
         </Text>
       </Card>
     ) : (
@@ -65,4 +52,18 @@ class House extends Component {
   }
 }
 
-export default House;
+const mapStateToProps = (state, ownProps) => {
+  const id = ownProps.match.params.house_id;
+  if(state.houses.length) {
+    return {
+      house: state.houses[id-1]
+    }
+  }
+  else {
+    return {
+      house: {name: false}
+    }
+  }
+}
+
+export default connect(mapStateToProps)(House);

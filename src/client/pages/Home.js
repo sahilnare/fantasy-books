@@ -5,36 +5,19 @@ import Book from '../components/Book';
 import AddBook from '../components/AddBook';
 import Navbar from '../components/Navbar';
 import { Box, Card, Image, Heading, Text, Flex } from 'rebass';
+import { connect } from 'react-redux';
+import { addBook } from '../actions/postActions';
+import { deleteBook } from '../actions/deleteActions';
 
 class Home extends Component {
-  constructor() {
-    super();
-    this.state = {
-      books: [
-        {id: 1, name: 'Discworld', author: 'Terry'},
-        {id: 2, name: 'Mistborn', author: 'Brandon'},
-        {id: 3, name: 'ASOIAF', author: 'George'}
-      ]
-    }
-  }
-
-  componentDidMount() {
-    // console.log(this.props);
-  }
 
   deleteBook = (id) => {
-    console.log(id);
-    const books = this.state.books.filter(book => {
-      return book.id !== id;
-    });
-    this.setState({books: books});
+    this.props.deleteBook(id);
   }
 
   addBook = (book) => {
     book.id = Math.floor(Math.random()*10000);
-    console.log(book);
-    let books = [...this.state.books, book];
-    this.setState({books: books});
+    this.props.addBook(book);
   }
 
   render() {
@@ -63,7 +46,7 @@ class Home extends Component {
             </Card>
           </Box>
 
-          <Book books={this.state.books} deleteBook={this.deleteBook}/>
+          <Book books={this.props.books} deleteBook={this.deleteBook}/>
           <AddBook addBook={this.addBook}/>
 
         </Box>
@@ -72,4 +55,21 @@ class Home extends Component {
   }
 }
 
-export default Home;
+const mapStateToProps = (state) => {
+  return {
+    books: state.books
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    deleteBook: (id) => {
+      dispatch(deleteBook(id));
+    },
+    addBook: (book) => {
+      dispatch(addBook(book));
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

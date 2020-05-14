@@ -7,13 +7,17 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Asoiaf from './pages/Asoiaf';
 import House from './components/House';
+import { connect } from 'react-redux';
+import axios from 'axios';
+import { fetchHouses } from './actions/fetchData';
 
-export default class App extends Component {
-  constructor() {
-    super();
-    this.state = {
+class App extends Component {
 
-    }
+  componentDidMount() {
+    axios.get('https://www.anapioficeandfire.com/api/houses?page=1&pageSize=50')
+      .then(res => {
+        this.props.fetchHouses(res.data);
+      });
   }
 
   render() {
@@ -31,3 +35,19 @@ export default class App extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchHouses: (data) => {
+      dispatch(fetchHouses(data));
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

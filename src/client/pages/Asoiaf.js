@@ -1,29 +1,13 @@
 import React, { Component } from 'react';
 import { Box, Card, Image, Heading, Text, Flex } from 'rebass';
 import Navbar from '../components/Navbar';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class Asoiaf extends Component {
-  constructor() {
-    super();
-    this.state = {
-      houses: []
-    }
-  }
-
-  componentDidMount() {
-    axios.get('https://www.anapioficeandfire.com/api/houses?page=1&pageSize=50')
-      .then(res => {
-        this.setState({houses: res.data});
-      });
-
-    axios.get('https://www.googleapis.com/books/v1/volumes?q=mistborn')
-      .then(res => console.log(res.data));
-  }
 
   render() {
-    const {houses} = this.state;
+    const houses = this.props.houses;
     const houseList = houses.length ? (
       houses.map((house, id) => {
         let house_id = id + 1;
@@ -80,4 +64,10 @@ class Asoiaf extends Component {
   }
 }
 
-export default Asoiaf;
+const mapStateToProps = (state) => {
+  return {
+    houses: state.houses
+  }
+}
+
+export default connect(mapStateToProps)(Asoiaf);
