@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Box, Card, Image, Heading, Text, Flex } from 'rebass';
-import Navbar from '../components/Navbar';
+import Navbar from './components/navbar/Navbar';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -66,7 +66,7 @@ class Asoiaf extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    houses: state.houses
+    houses: state.house.houses
   }
 }
 

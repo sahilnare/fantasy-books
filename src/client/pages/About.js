@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Box, Card, Image, Heading, Text, Flex } from 'rebass';
-import Navbar from '../components/Navbar';
+import Navbar from './components/navbar/Navbar';
 import randomPic from '../hoc/randomPic';
 
 const About = (props) => {

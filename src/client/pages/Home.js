@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import '../app.css';
 import WizardHat from '../assets/img/hat.png';
-import Book from '../components/Book';
-import AddBook from '../components/AddBook';
-import Navbar from '../components/Navbar';
+import Book from './components/Book';
+import AddBook from './components/AddBook';
+import Navbar from './components/navbar/Navbar';
 import { Box, Card, Image, Heading, Text, Flex } from 'rebass';
 import { connect } from 'react-redux';
-import { addBook } from '../actions/postActions';
-import { deleteBook } from '../actions/deleteActions';
+import { addBook } from '../reduxStore/actions/postActions';
+import { deleteBook } from '../reduxStore/actions/deleteActions';
 
 class Home extends Component {
 
@@ -57,7 +57,7 @@ class Home extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    books: state.books
+    books: state.book.books
   }
 }
 

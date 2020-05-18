@@ -6,18 +6,14 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
 import Asoiaf from './pages/Asoiaf';
-import House from './components/House';
+import House from './pages/components/House';
 import { connect } from 'react-redux';
-import axios from 'axios';
-import { fetchHouses } from './actions/fetchData';
+import { fetchHouses } from './reduxStore/actions/fetchActions';
 
 class App extends Component {
 
   componentDidMount() {
-    axios.get('https://www.anapioficeandfire.com/api/houses?page=1&pageSize=50')
-      .then(res => {
-        this.props.fetchHouses(res.data);
-      });
+    this.props.fetchHouses();
   }
 
   render() {
@@ -36,18 +32,12 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-
-  }
-}
-
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchHouses: (data) => {
-      dispatch(fetchHouses(data));
+    fetchHouses: () => {
+      dispatch(fetchHouses());
     }
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App);

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Box, Card, Heading, Text, Flex } from 'rebass';
-import Navbar from './Navbar';
+import Navbar from './navbar/Navbar';
 import { connect } from 'react-redux';
 
 class House extends Component {
@@ -54,9 +54,9 @@ class House extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   const id = ownProps.match.params.house_id;
-  if(state.houses.length) {
+  if(state.house.houses.length) {
     return {
-      house: state.houses[id-1]
+      house: state.house.houses[id-1]
     }
   }
   else {
