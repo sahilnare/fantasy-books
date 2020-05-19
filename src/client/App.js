@@ -7,14 +7,9 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Asoiaf from './pages/Asoiaf';
 import House from './pages/components/House';
-import { connect } from 'react-redux';
-import { fetchHouses } from './reduxStore/actions/fetchActions';
 
 class App extends Component {
 
-  componentDidMount() {
-    this.props.fetchHouses();
-  }
 
   render() {
     return (
@@ -32,12 +27,5 @@ class App extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchHouses: () => {
-      dispatch(fetchHouses());
-    }
-  }
-}
 
-export default connect(null, mapDispatchToProps)(App);
+export default App;

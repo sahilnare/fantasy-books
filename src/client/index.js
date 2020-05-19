@@ -5,10 +5,10 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import rootReducer from './reduxStore/reducers/rootReducer';
 import thunk from 'redux-thunk';
-import { reduxFirestore, getFirestore, createFirestoreInstance } from 'redux-firestore'
-import { ReactReduxFirebaseProvider, getFirebase } from 'react-redux-firebase'
-import firebaseConfig from './firebase/firebaseConfig'
-import firebase from 'firebase/app'
+import { reduxFirestore, getFirestore, createFirestoreInstance } from 'redux-firestore';
+import { ReactReduxFirebaseProvider, getFirebase } from 'react-redux-firebase';
+import firebaseConfig from './firebase/firebaseConfig';
+import firebase from 'firebase/app';
 
 const store = createStore(rootReducer,
   compose(

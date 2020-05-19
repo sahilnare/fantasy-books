@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { Box, Card, Heading, Text, Flex } from 'rebass';
 import Navbar from './navbar/Navbar';
 import { connect } from 'react-redux';
+import { firestoreConnect } from 'react-redux-firebase';
+import { compose } from 'redux';
 
 class House extends Component {
 
   render() {
-    console.log(this.props.house);
-    const house = this.props.house.name ? (
+    const id = this.props.match.params.house_id;
+    const house = this.props.house ? (
       <Card
         sx={{
           p: 3,
@@ -15,16 +17,16 @@ class House extends Component {
           boxShadow: '0 0 16px rgba(0, 0, 0, .25)',
         }} my={2}>
         <Heading as='h1' fontSize={5} my={2}>
-          {this.props.house.name}
+          {this.props.house[id].name}
         </Heading>
         <Text fontSize={4} mt={2} mb={2}>
-          Region: {this.props.house.region}
+          Region: {this.props.house[id].region}
         </Text>
         <Text fontSize={4} mt={2} mb={2}>
-          Coat of arms: {this.props.house.coatOfArms}
+          Coat of arms: {this.props.house[id].coatOfArms}
         </Text>
         <Text fontSize={4} mt={2} mb={2}>
-          Words: {this.props.house.words}
+          Words: {this.props.house[id].words}
         </Text>
       </Card>
     ) : (
@@ -53,17 +55,14 @@ class House extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const id = ownProps.match.params.house_id;
-  if(state.house.houses.length) {
-    return {
-      house: state.house.houses[id-1]
-    }
-  }
-  else {
-    return {
-      house: {name: false}
-    }
+  return {
+    house: state.firestore.data.houses
   }
 }
 
-export default connect(mapStateToProps)(House);
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect(props =>[
+    { collection: 'houses', doc: props.match.params.house_id }
+  ])
+)(House);

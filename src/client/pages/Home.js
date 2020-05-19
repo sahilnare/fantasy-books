@@ -8,6 +8,8 @@ import { Box, Card, Image, Heading, Text, Flex } from 'rebass';
 import { connect } from 'react-redux';
 import { addBook } from '../reduxStore/actions/postActions';
 import { deleteBook } from '../reduxStore/actions/deleteActions';
+import { firestoreConnect } from 'react-redux-firebase';
+import { compose } from 'redux';
 
 class Home extends Component {
 
@@ -16,7 +18,7 @@ class Home extends Component {
   }
 
   addBook = (book) => {
-    book.id = Math.floor(Math.random()*10000);
+    book.book_id = Math.floor(Math.random()*10000);
     this.props.addBook(book);
   }
 
@@ -57,7 +59,7 @@ class Home extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    books: state.book.books
+    books: state.firestore.ordered.books
   }
 }
 
@@ -72,4 +74,7 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  firestoreConnect([{ collection: 'books' }])
+)(Home);

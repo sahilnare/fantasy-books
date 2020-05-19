@@ -13,6 +13,14 @@ const houseReducer = (state = initState, action) => {
     }
   }
 
+  else if(action.type === 'ADD_HOUSE') {
+    let newHouses = [...state.houses, action.house];
+    return {
+      ...state,
+      houses: newHouses
+    }
+  }
+
   else {
     return state;
   }

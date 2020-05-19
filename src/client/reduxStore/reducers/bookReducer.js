@@ -1,10 +1,6 @@
 
 const initState = {
-  books: [
-    {id: 1, name: 'Discworld', author: 'Terry'},
-    {id: 2, name: 'Mistborn', author: 'Brandon'},
-    {id: 3, name: 'ASOIAF', author: 'George'}
-  ]
+  books: []
 }
 
 const bookReducer = (state = initState, action) => {
@@ -17,6 +13,11 @@ const bookReducer = (state = initState, action) => {
       ...state,
       books: newBooks
     }
+  }
+
+  else if(action.type === 'DELETE_BOOK_ERR') {
+    console.log('Delete book error: ', action.err);
+    return state;
   }
 
   else if(action.type === 'ADD_BOOK') {

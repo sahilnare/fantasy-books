@@ -1,9 +1,9 @@
 import React from 'react';
-import { Box, Text } from 'rebass';
+import { Box, Text, Button } from 'rebass';
 
 const Book = ({books, deleteBook}) => {
 
-  const bookList = books.length ? (
+  const bookList = books ? (
     books.map(book => {
       return (
         <Text
@@ -11,9 +11,12 @@ const Book = ({books, deleteBook}) => {
           fontWeight='bold'
           color='primary'
           key={book.id}
-          onClick={() => {deleteBook(book.id)}}
+          my={3}
         >
           {book.name} by {book.author}
+          <Button variant='secondary' px={2} ml={4} onClick={() => {deleteBook(book.id)}}>
+            Delete
+          </Button>
         </Text>
       );
     })

@@ -3,22 +3,23 @@ import { Box, Card, Image, Heading, Text, Flex } from 'rebass';
 import Navbar from './components/navbar/Navbar';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { firestoreConnect } from 'react-redux-firebase';
+import { compose } from 'redux';
 
 class Asoiaf extends Component {
 
   render() {
     const houses = this.props.houses;
-    const houseList = houses.length ? (
-      houses.map((house, id) => {
-        let house_id = id + 1;
+    const houseList = houses ? (
+      houses.map((house) => {
         return (
            <Card
              sx={{
                p: 1,
                borderRadius: 2,
                boxShadow: '0 0 16px rgba(0, 0, 0, .25)',
-             }} my={3} key={id}>
-              <Link to={'/asoiaf/' + house_id} style={{color: '#000', textDecoration: 'none'}}>
+             }} my={3} key={house.id}>
+              <Link to={'/asoiaf/' + house.id} style={{color: '#000', textDecoration: 'none'}}>
                  <Box p={4} width={2/3} mx='auto'>
                    <Heading as='h1' fontSize={4} mb={4}>
                      {house.name}
@@ -66,8 +67,11 @@ class Asoiaf extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    houses: state.house.houses
+    houses: state.firestore.ordered.houses
   }
 }
 
-export default connect(mapStateToProps)(Asoiaf);
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect([{ collection: 'houses' }])
+)(Asoiaf);
