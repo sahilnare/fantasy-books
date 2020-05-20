@@ -7,9 +7,9 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Asoiaf from './pages/Asoiaf';
 import House from './pages/components/House';
+import Search from './pages/Search';
 
 class App extends Component {
-
 
   render() {
     return (
@@ -20,12 +20,12 @@ class App extends Component {
             <Route path="/about" component={About} />
             <Route path="/asoiaf/:house_id" component={House} />
             <Route path="/asoiaf" component={Asoiaf} />
+            <Route path="/search" component={Search} />
           </Switch>
         </ThemeProvider>
       </BrowserRouter>
     );
   }
 }
-
 
 export default App;

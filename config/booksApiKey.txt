@@ -1,0 +1,22 @@
+Key:
+AIzaSyAbXsqqvShVCLR3zHTr_01CD1nkkCB5Bto
+
+Searching: q='query'
+https://www.googleapis.com/books/v1/volumes?q=flowers&key=AIzaSyAbXsqqvShVCLR3zHTr_01CD1nkkCB5Bto
+
+Parameters: inauthor:keyes
+https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=AIzaSyAbXsqqvShVCLR3zHTr_01CD1nkkCB5Bto
+
+Filter: filter=free-ebooks
+https://www.googleapis.com/books/v1/volumes?q=flowers&filter=free-ebooks&key=AIzaSyAbXsqqvShVCLR3zHTr_01CD1nkkCB5Bto
+
+maxResults = 5
+https://www.googleapis.com/books/v1/volumes?q=mistborn&maxResults=5&key=AIzaSyAbXsqqvShVCLR3zHTr_01CD1nkkCB5Bto
+
+Specific book:
+https://www.googleapis.com/books/v1/volumes/volumeId
+Example: (Mistborn)
+https://www.googleapis.com/books/v1/volumes/t_ZYYXZq4RgC
+
+Public Bookshelves:
+https://www.googleapis.com/books/v1/users/1112223334445556677/bookshelves&key=AIzaSyAbXsqqvShVCLR3zHTr_01CD1nkkCB5Bto

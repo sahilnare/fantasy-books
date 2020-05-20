@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Box, Text, Flex } from 'rebass';
+import { Box, Text, Flex, Image } from 'rebass';
 import { Link } from 'react-router-dom';
+import Avatar from '../../../assets/img/wizard.png';
 
 const Navbar = (props) => {
     return (
@@ -19,6 +20,21 @@ const Navbar = (props) => {
         </Link>
         <Link to='/asoiaf' style={{textDecoration: 'none'}} >
           <Text p={3} fontSize={2} fontWeight='bold' color='white' sx={{textDecoration: 'none'}}>ASOIAF</Text>
+        </Link>
+        <Link to='/search' style={{textDecoration: 'none'}} >
+          <Text p={3} fontSize={2} fontWeight='bold' color='white' sx={{textDecoration: 'none'}}>Search</Text>
+        </Link>
+        <Link>
+          <Image
+            src={Avatar}
+            sx={{
+              width: 36,
+              height: 36,
+              borderRadius: 9999,
+              backgroundColor: 'white'
+            }}
+            mx={3}
+          />
         </Link>
       </Flex>
     );
