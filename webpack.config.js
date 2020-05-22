@@ -1,7 +1,9 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const outputDirectory = 'dist';
 
 module.exports = {
@@ -45,6 +47,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html',
       favicon: './public/favicon.ico'
-    })
-  ]
+    }),
+    new webpack.optimize.ModuleConcatenationPlugin(),
+    // new BundleAnalyzerPlugin()
+  ],
+  optimization: {
+    minimizer: [new UglifyJsPlugin()],
+  },
 };

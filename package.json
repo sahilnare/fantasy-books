@@ -4,12 +4,13 @@
   "description": "Fantasy Books Website",
   "main": "src/server/index.js",
   "scripts": {
-    "build": "webpack --mode production --devtool inline-source-map",
+    "build": "webpack --mode production",
     "start": "yarn run build && node index.js",
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
     "server": "nodemon index.js",
     "dev": "concurrently \"yarn run server\" \"yarn run client\"",
-    "analyze": "source-map-explorer 'dist/bundle.js'"
+    "analyze": "source-map-explorer 'dist/bundle.js'",
+    "report": "yarn run build"
   },
   "author": "Sahil Nare",
   "license": "ISC",
@@ -31,8 +32,7 @@
     "rebass": "^4.0.7",
     "redux": "^4.0.5",
     "redux-firestore": "^0.13.0",
-    "redux-thunk": "^2.3.0",
-    "source-map-explorer": "^2.4.2"
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
@@ -53,9 +53,11 @@
     "html-webpack-plugin": "^3.2.0",
     "nodemon": "^1.17.3",
     "style-loader": "^0.23.0",
+    "uglifyjs-webpack-plugin": "^2.2.0",
     "url-loader": "^1.0.1",
-    "webpack": "4.42.0",
+    "webpack": "^4.42.0",
+    "webpack-bundle-analyzer": "^3.8.0",
     "webpack-cli": "^3.0.8",
-    "webpack-dev-server": "3.10.3"
+    "webpack-dev-server": "^3.10.3"
   }
 }
