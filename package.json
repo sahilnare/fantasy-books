@@ -11,7 +11,8 @@
     "dev": "concurrently \"yarn run server\" \"yarn run client\"",
     "analyze": "source-map-explorer 'dist/bundle.js'",
     "report": "yarn run build",
-    "heroku-postbuild": "yarn install && yarn run build"
+    "heroku-prebuild": "yarn install",
+    "heroku-postbuild": "yarn run build"
   },
   "author": "Sahil Nare",
   "license": "ISC",
