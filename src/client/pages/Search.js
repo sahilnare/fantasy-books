@@ -61,7 +61,7 @@ class Search extends React.Component {
                 {
                   book.volumeInfo.imageLinks ? (
                     <Image
-                      src={book.volumeInfo.imageLinks.thumbnail}
+                      src={book.volumeInfo.imageLinks.thumbnail.replace("http", "https")}
                       sx={{
                         borderRadius: 8,
                       }}
