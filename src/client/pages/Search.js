@@ -4,6 +4,7 @@ import { Box, Card, Heading, Text, Button, Image } from 'rebass';
 import { connect } from 'react-redux';
 import items from './components/items';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { searchBook } from '../reduxStore/actions/searchActions';
 
 class Search extends React.Component {
@@ -19,14 +20,11 @@ class Search extends React.Component {
     handleChange(e) {
         const {name, value} = e.target
         let suggestion = []
-        if (value.length > 0) {
-          // axios.get(`https://www.googleapis.com/books/v1/volumes?q=${value}&maxResults=5&key=AIzaSyAbXsqqvShVCLR3zHTr_01CD1nkkCB5Bto`)
-          //   .then(res => {
-          //     console.log(res.data);
-          //   });
-          const regex = new RegExp(`^${value}`, 'i')
-          suggestion = items.sort().filter(v => regex.test(v))
-        }
+        // if (value.length > 0) {
+        //
+        //   const regex = new RegExp(`^${value}`, 'i')
+        //   suggestion = items.sort().filter(v => regex.test(v))
+        // }
         this.setState({ suggestion, [name]: value })
     }
 
@@ -76,11 +74,25 @@ class Search extends React.Component {
                 <Text fontSize={3} my={3}>
                   Description: {book.volumeInfo.description}
                 </Text>
-                <Text fontSize={3} my={3}>
-                  Author: {
-                    book.volumeInfo.authors.map(author => author + ' ')
+                  {
+                    book.volumeInfo.authors ? (
+                      <Text fontSize={3} my={3}>
+                        Author: {
+                          book.volumeInfo.authors.map(author => author + ' ')
+                        }
+                      </Text>
+                    ) : null
                   }
-                </Text>
+                  {
+                    book.volumeInfo.canonicalVolumeLink ? (
+                        <Text fontSize={3} my={3}>
+                          <a href={book.volumeInfo.canonicalVolumeLink} target="_blank">Google Books Link</a>
+                        </Text>
+                    ) : null
+                  }
+                <Button bg='green' p={2} my={2} style={{cursor: "pointer"}} onClick={() => console.log(book.id)}>
+                  Discuss
+                </Button>
               </Card>
             )
           })
@@ -99,7 +111,7 @@ class Search extends React.Component {
                 <Button variant='primary' px={2} ml={4} onClick={() => {this.props.searchBook(this.state.text)}}>
                   Search
                 </Button>
-                {this.renderSuggestion()}
+                {/* this.renderSuggestion() */}
               </Box>
               <Box width={2/3} px={2} mx='auto' py={2}>
                 { bookList }
@@ -110,7 +122,6 @@ class Search extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     books: state.search.results
   }

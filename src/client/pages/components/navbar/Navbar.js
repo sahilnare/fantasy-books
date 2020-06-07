@@ -18,8 +18,8 @@ const Navbar = (props) => {
         <Link to='/about' style={{textDecoration: 'none'}} >
           <Text p={3} fontSize={2} fontWeight='bold' color='white' sx={{textDecoration: 'none'}}>About</Text>
         </Link>
-        <Link to='/asoiaf' style={{textDecoration: 'none'}} >
-          <Text p={3} fontSize={2} fontWeight='bold' color='white' sx={{textDecoration: 'none'}}>ASOIAF</Text>
+        <Link to='/posts' style={{textDecoration: 'none'}} >
+          <Text p={3} fontSize={2} fontWeight='bold' color='white' sx={{textDecoration: 'none'}}>Posts</Text>
         </Link>
         <Link to='/search' style={{textDecoration: 'none'}} >
           <Text p={3} fontSize={2} fontWeight='bold' color='white' sx={{textDecoration: 'none'}}>Search</Text>

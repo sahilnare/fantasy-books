@@ -5,9 +5,10 @@ import theme from '@rebass/preset';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
-import Asoiaf from './pages/Asoiaf';
-import House from './pages/components/House';
+import Posts from './pages/Posts';
+import Post from './pages/components/Post';
 import Search from './pages/Search';
+import CreatePost from './pages/CreatePost';
 
 class App extends Component {
 
@@ -18,9 +19,10 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/about" component={About} />
-            <Route path="/asoiaf/:house_id" component={House} />
-            <Route path="/asoiaf" component={Asoiaf} />
+            <Route path="/posts/:post_id" component={Post} />
+            <Route path="/posts" component={Posts} />
             <Route path="/search" component={Search} />
+            <Route path="/createpost" component={CreatePost} />
           </Switch>
         </ThemeProvider>
       </BrowserRouter>

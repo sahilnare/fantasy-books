@@ -5,12 +5,13 @@
   "main": "src/server/index.js",
   "scripts": {
     "build": "webpack --mode production",
-    "start": "yarn run build && node index.js",
+    "start": "node index.js",
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
     "server": "nodemon index.js",
     "dev": "concurrently \"yarn run server\" \"yarn run client\"",
     "analyze": "source-map-explorer 'dist/bundle.js'",
-    "report": "yarn run build"
+    "report": "yarn run build",
+    "heroku-postbuild": "yarn install && yarn run build"
   },
   "author": "Sahil Nare",
   "license": "ISC",
