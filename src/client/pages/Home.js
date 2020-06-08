@@ -1,26 +1,13 @@
 import React, { Component } from 'react';
 import '../app.css';
 import WizardHat from '../assets/img/hat.png';
-import Book from './components/Book';
-import AddBook from './components/AddBook';
 import Navbar from './components/navbar/Navbar';
 import { Box, Card, Image, Heading, Text, Flex } from 'rebass';
-import { connect } from 'react-redux';
-import { addBook } from '../reduxStore/actions/postActions';
-import { deleteBook } from '../reduxStore/actions/deleteActions';
-import { firestoreConnect } from 'react-redux-firebase';
-import { compose } from 'redux';
+// import { connect } from 'react-redux';
+// import { firestoreConnect } from 'react-redux-firebase';
+// import { compose } from 'redux';
 
 class Home extends Component {
-
-  deleteBook = (id) => {
-    this.props.deleteBook(id);
-  }
-
-  addBook = (book) => {
-    book.book_id = Math.floor(Math.random()*10000);
-    this.props.addBook(book);
-  }
 
   render() {
     return (
@@ -48,33 +35,27 @@ class Home extends Component {
             </Card>
           </Box>
 
-          <Book books={this.props.books} deleteBook={this.deleteBook}/>
-          <AddBook addBook={this.addBook}/>
-
         </Box>
       </React.Fragment>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    books: state.firestore.ordered.books
-  }
-}
+// const mapStateToProps = (state) => {
+//   return {
+//
+//   }
+// }
+//
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//
+//   }
+// }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    deleteBook: (id) => {
-      dispatch(deleteBook(id));
-    },
-    addBook: (book) => {
-      dispatch(addBook(book));
-    }
-  }
-}
+// export default compose(
+//   connect(mapStateToProps, mapDispatchToProps),
+//   firestoreConnect([{ collection: 'books' }])
+// )(Home);
 
-export default compose(
-  connect(mapStateToProps, mapDispatchToProps),
-  firestoreConnect([{ collection: 'books' }])
-)(Home);
+export default Home;

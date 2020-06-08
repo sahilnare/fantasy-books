@@ -60,13 +60,13 @@ class Search extends React.Component {
                 }} my={3} key={book.id}>
                 {
                   book.volumeInfo.imageLinks ? (
-                    <Image
-                      src={book.volumeInfo.imageLinks.thumbnail.replace("http", "https")}
-                      sx={{
-                        borderRadius: 8,
-                      }}
-                    />
-                ) : null
+                      <Image
+                        src={book.volumeInfo.imageLinks.thumbnail.replace("http", "https")}
+                        sx={{
+                          borderRadius: 8,
+                        }}
+                      />
+                  ) : null
                 }
                 <Heading as='h1' fontSize={5} my={3}>
                   {book.volumeInfo.title}
