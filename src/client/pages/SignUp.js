@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Box, Card, Image, Heading, Text } from 'rebass';
 import { connect } from 'react-redux';
-import { logInUser } from '../reduxStore/actions/authActions';
-import LogInForm from './components/LogInForm';
+import { signUpUser } from '../reduxStore/actions/authActions';
+import SignUpForm from './components/SignUpForm';
 import { Redirect } from 'react-router-dom';
 
-class LogIn extends Component {
+class SignUp extends Component {
 
-  logInUser = (cred) => {
-    this.props.logInUser(cred);
+  signUpUser = (cred) => {
+    this.props.signUpUser(cred);
     // console.log(cred);
   }
 
@@ -26,12 +26,12 @@ class LogIn extends Component {
               }}>
                 <Box p={3} width={1/2} mx='auto'>
                   <Heading as='h1'>
-                    Log in to Storm Fantasy!
+                    Sign up to Storm Fantasy!
                   </Heading>
                 </Box>
             </Card>
           </Box>
-          <LogInForm logInUser={this.logInUser} />
+          <SignUpForm signUpUser={this.signUpUser} />
           <Box p={3} width={1/2} mx='auto'>
             {
               this.props.authError ? (
@@ -57,10 +57,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    logInUser: (cred) => {
-      dispatch(logInUser(cred));
+    signUpUser: (cred) => {
+      dispatch(signUpUser(cred));
     }
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LogIn);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

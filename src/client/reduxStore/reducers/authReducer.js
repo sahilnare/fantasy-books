@@ -17,7 +17,23 @@ const postReducer = (state = initState, action) => {
     console.log('Login failed!');
     return {
       ...state,
-      authError: 'Login failed'
+      authError: action.err.message
+    }
+  }
+
+  if(action.type === 'SIGNUP_SUCCESS') {
+    console.log('Signup success!');
+    return {
+      ...state,
+      authError: null
+    }
+  }
+
+  else if(action.type === 'SIGNUP_ERR') {
+    console.log('Signup failed!');
+    return {
+      ...state,
+      authError: action.err.message
     }
   }
 

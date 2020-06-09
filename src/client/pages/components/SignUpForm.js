@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import { Box, Flex, Button, Text } from 'rebass';
 import { Prompt } from 'react-router-dom';
 
-class LogInForm extends Component {
+class SignUpForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       email: '',
       password: '',
+      username: '',
       success: {
 
       },
@@ -20,6 +21,24 @@ class LogInForm extends Component {
     const {name, value} = e.target;
 
     switch(name) {
+        case "username":
+          {
+            if(value.match(/^[a-zA-Z0-9_.-]*$/) && value.length > 0) {
+              this.setState(prevState => {
+                let success = { ...prevState.success };
+                success[name] = "c";
+                return { success };
+              })
+            }
+            else {
+              this.setState(prevState => {
+                let success = { ...prevState.success };
+                success[name] = "w";
+                return { success };
+              })
+            }
+            break
+          }
         case "email":
           {
             if(value.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
@@ -65,7 +84,7 @@ class LogInForm extends Component {
     this.setState({
       [name]: value
     }, () => {
-      if(this.state.email.length > 0 || this.state.password.length > 0) {
+      if(this.state.email.length > 0 || this.state.password.length > 0 || this.state.username.length > 0 ) {
         this.setState({isBlocking: true});
       } else {
         this.setState({isBlocking: false});
@@ -75,10 +94,10 @@ class LogInForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    if(this.state.success.email === "c" && this.state.success.password === "c") {
+    if(this.state.success.email === "c" && this.state.success.password === "c" && this.state.success.username === "c") {
       this.setState({isBlocking: false, formValid: true}, () => {
-        this.props.logInUser({ email: this.state.email, password: this.state.password });
-        this.setState({email: '', password: ''});
+        this.props.signUpUser({ email: this.state.email, password: this.state.password, username: this.state.username });
+        this.setState({email: '', password: '', username: ''});
       });
     }
     else {
@@ -102,6 +121,11 @@ class LogInForm extends Component {
           />
           <Flex mb={3}>
             <Box width={1/2} px={2}>
+              <input type="text" onChange={this.handleChange} name="username" value={this.state.username} id="username" placeholder="Username" />
+            </Box>
+          </Flex>
+          <Flex mb={3}>
+            <Box width={1/2} px={2}>
               <input type="text" onChange={this.handleChange} name="email" value={this.state.email} id="email" placeholder="Email" />
             </Box>
             <Box width={1/2} px={2}>
@@ -116,7 +140,7 @@ class LogInForm extends Component {
           {
             this.state.formValid ? null : (
               <Text fontSize={3} color='red' mt={2} mb={2}>
-                Enter a correct email and make sure that the password is more than 6 characters.
+                Enter a correct email and make sure that the password is more than 6 characters. The username should contain only letters, numbers or _ . -
               </Text>
             )
           }
@@ -126,4 +150,4 @@ class LogInForm extends Component {
   }
 }
 
-export default LogInForm;
+export default SignUpForm;

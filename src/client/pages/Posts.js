@@ -42,7 +42,7 @@ class Posts extends Component {
             {/*<Heading as='h1'>
               No Posts here
             </Heading>*/}
-            <div class="loader">Loading...</div>
+            <div className="loader">Loading...</div>
           </Box>
       </Card>
     )

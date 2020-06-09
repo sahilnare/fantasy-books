@@ -14,7 +14,9 @@ const Navbar = (props) => {
         color='white'
         bg='black'
         alignItems='center'>
-        <Text p={3} fontSize={4} fontWeight='bold'>Fantasy Books</Text>
+        <Link to='/' style={{textDecoration: 'none', color: 'white'}} >
+          <Text p={3} fontSize={4} fontWeight='bold'>Fantasy Books</Text>
+        </Link>
         <Box mx='auto' />
         { links }
       </Flex>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../app.css';
 import WizardHat from '../assets/img/hat.png';
 import { Box, Card, Image, Heading, Text, Flex } from 'rebass';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 // import { firestoreConnect } from 'react-redux-firebase';
 // import { compose } from 'redux';
 
@@ -30,6 +30,15 @@ class Home extends Component {
                     Behold!
                   </Text>
                 </Box>
+                {
+                  !this.props.auth.uid ? (
+                    <Box p={3} width={1/2} mx='auto'>
+                      <Heading as='h1'>
+                        Log in to discuss about fantasy books!
+                      </Heading>
+                    </Box>
+                  ) : null
+                }
             </Card>
           </Box>
 
@@ -39,21 +48,16 @@ class Home extends Component {
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//
-//   }
-// }
-//
+const mapStateToProps = (state) => {
+  return {
+    auth: state.firebase.auth
+  }
+}
+
 // const mapDispatchToProps = (dispatch) => {
 //   return {
 //
 //   }
 // }
 
-// export default compose(
-//   connect(mapStateToProps, mapDispatchToProps),
-//   firestoreConnect([{ collection: 'books' }])
-// )(Home);
-
-export default Home;
+export default connect(mapStateToProps)(Home);
