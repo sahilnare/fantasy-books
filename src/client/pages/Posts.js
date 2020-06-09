@@ -5,12 +5,32 @@ import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 
+const months = {
+  0: 'Jan',
+  1: 'Feb',
+  2: 'Mar',
+  3: 'Apr',
+  4: 'May',
+  5: 'Jun',
+  6: 'Jul',
+  7: 'Aug',
+  8: 'Sep',
+  9: 'Oct',
+  10: 'Nov',
+  11: 'Dec'
+}
+
 class Posts extends Component {
 
   render() {
     const posts = this.props.posts;
     const postList = posts ? (
       posts.map((post) => {
+        const date = post.timestamp.toDate();
+        let minutes = date.getMinutes();
+        if(minutes < 10) {
+          minutes = '0' + minutes
+        }
         return (
            <Card
              sx={{
@@ -25,6 +45,9 @@ class Posts extends Component {
                    </Heading>
                    <Text color='purple' fontSize={3} my={3}>
                      By: {post.posted_by.username}
+                   </Text>
+                   <Text fontSize={2} my={3}>
+                     {`${date.getHours()}:${minutes}, ${date.getDate()} ${months[date.getMonth()]}, ${date.getFullYear()}`}
                    </Text>
                  </Box>
               </Link>
@@ -70,7 +93,6 @@ class Posts extends Component {
 }
 
 const mapStateToProps = (state) => {
-  // console.log(state.firestore);
   return {
     posts: state.firestore.ordered.posts
   }
@@ -78,5 +100,5 @@ const mapStateToProps = (state) => {
 
 export default compose(
   connect(mapStateToProps),
-  firestoreConnect([{ collection: 'posts' }])
+  firestoreConnect([{ collection: 'posts', orderBy: ['timestamp', 'desc'] }])
 )(Posts);

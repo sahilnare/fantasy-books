@@ -1,5 +1,5 @@
 
-export const addPost = (post) => {
+export const upvotePost = (post) => {
   return (dispatch, getState, { getFirestore }) => {
     const firebase = getFirestore();
     const profile = getState().firebase.profile;

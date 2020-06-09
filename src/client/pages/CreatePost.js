@@ -10,12 +10,6 @@ import { Redirect } from 'react-router-dom';
 class CreatePost extends Component {
 
   addPost = (post) => {
-    post.timestamp = new Date();
-    post.posted_by = {};
-    post.posted_by.username = "thor_odinson";
-    post.posted_by.user_id = "mDJEj8DJjDO9ndNKV";
-    post.posted_by.link = "www.google.com";
-    post.upvotes = 1;
     this.props.addPost(post);
   }
 
