@@ -9,6 +9,8 @@ import Posts from './pages/Posts';
 import Post from './pages/components/Post';
 import Search from './pages/Search';
 import CreatePost from './pages/CreatePost';
+import LogIn from './pages/LogIn';
+import Navbar from './pages/components/navbar/Navbar';
 
 class App extends Component {
 
@@ -16,6 +18,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <ThemeProvider className="App" theme={theme} >
+          <Navbar />
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/about" component={About} />
@@ -23,6 +26,7 @@ class App extends Component {
             <Route path="/posts" component={Posts} />
             <Route path="/search" component={Search} />
             <Route path="/createpost" component={CreatePost} />
+            <Route path="/login" component={LogIn} />
           </Switch>
         </ThemeProvider>
       </BrowserRouter>

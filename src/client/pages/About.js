@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { Box, Card, Image, Heading, Text, Flex } from 'rebass';
-import Navbar from './components/navbar/Navbar';
 import randomPic from '../hoc/randomPic';
 
 const About = (props) => {
     return (
       <React.Fragment>
-        <Navbar />
         <Box className="homepage">
           <Box width={['80%', '65%', 1/2]} my={4} mx='auto' >
             <Card

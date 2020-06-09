@@ -1,5 +1,4 @@
 import React from "react"
-import Navbar from './components/navbar/Navbar';
 import { Box, Card, Heading, Text, Button, Image } from 'rebass';
 import { connect } from 'react-redux';
 import items from './components/items';
@@ -100,7 +99,6 @@ class Search extends React.Component {
 
         return (
             <React.Fragment>
-              <Navbar />
               <Box width={1/2} px={2} my={3} mx='auto'>
                 <Heading as='h1' fontSize={4}>
                   Search your favorite Fantasy Books!

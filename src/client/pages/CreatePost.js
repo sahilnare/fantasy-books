@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import AddPost from './components/AddPost';
-import Navbar from './components/navbar/Navbar';
-import { Box, Card, Image, Heading, Text, Flex } from 'rebass';
+import { Box, Card, Image, Heading, Text } from 'rebass';
 import { connect } from 'react-redux';
 import { addPost } from '../reduxStore/actions/postActions';
 import { deleteBook } from '../reduxStore/actions/deleteActions';
-import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
+import { Redirect } from 'react-router-dom';
 
 class CreatePost extends Component {
 
@@ -21,9 +20,9 @@ class CreatePost extends Component {
   }
 
   render() {
+    if(!this.props.auth.uid) return <Redirect to='/login' />
     return (
       <React.Fragment>
-        <Navbar />
         <Box className="homepage">
           <Box width={['80%', '65%', 1/2]} my={4} mx='auto' >
             <Card
@@ -51,6 +50,13 @@ class CreatePost extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  // console.log(state);
+  return {
+    auth: state.firebase.auth
+  }
+}
+
 const mapDispatchToProps = (dispatch) => {
   return {
     addPost: (post) => {
@@ -59,4 +65,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(CreatePost);
+export default connect(mapStateToProps, mapDispatchToProps)(CreatePost);

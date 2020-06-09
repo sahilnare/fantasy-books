@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Box, Card, Heading, Text, Flex, Button } from 'rebass';
-import Navbar from './navbar/Navbar';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
@@ -37,9 +36,13 @@ class Post extends Component {
         <Text fontSize={3} color='green' mt={2} mb={2}>
           Upvotes: {this.props.post[id].upvotes}
         </Text>
-        <Button bg='red' px={2} mr={2} style={{cursor: "pointer"}} onClick={() => this.deletePost(id)}>
-          Delete
-        </Button>
+        {
+          this.props.auth.uid ? (
+            <Button bg='red' px={2} mr={2} style={{cursor: "pointer"}} onClick={() => this.deletePost(id)}>
+              Delete
+            </Button>
+          ) : null
+        }
       </Card>
     ) : (
       <Card
@@ -71,7 +74,6 @@ class Post extends Component {
 
     return (
       <React.Fragment>
-        <Navbar />
         <Box className="homepage">
           <Box width={['80%', '65%', 1/2]} my={4} mx='auto' >
             {post}
@@ -88,7 +90,8 @@ const mapStateToProps = (state, ownProps) => {
   // console.log(state.firestore.data);
   return {
     post: state.firestore.data.posts,
-    comments: state.firestore.data.comments
+    comments: state.firestore.data.comments,
+    auth: state.firebase.auth
   }
 }
 

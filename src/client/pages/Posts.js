@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Box, Card, Image, Heading, Text, Flex, Button } from 'rebass';
-import Navbar from './components/navbar/Navbar';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
@@ -40,15 +39,15 @@ class Posts extends Component {
           boxShadow: '0 0 16px rgba(0, 0, 0, .25)',
         }} my={2}>
           <Box p={4} width={2/3} mx='auto'>
-            <Heading as='h1'>
+            {/*<Heading as='h1'>
               No Posts here
-            </Heading>
+            </Heading>*/}
+            <div class="loader">Loading...</div>
           </Box>
       </Card>
     )
     return (
       <React.Fragment>
-        <Navbar />
         <Box className="homepage">
           <Box width={['80%', '65%', 1/2]} my={4} mx='auto' >
             <Heading as='h1' fontSize={5} my={2}>

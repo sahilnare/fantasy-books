@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import '../app.css';
 import WizardHat from '../assets/img/hat.png';
-import Navbar from './components/navbar/Navbar';
 import { Box, Card, Image, Heading, Text, Flex } from 'rebass';
 // import { connect } from 'react-redux';
 // import { firestoreConnect } from 'react-redux-firebase';
@@ -12,7 +11,6 @@ class Home extends Component {
   render() {
     return (
       <React.Fragment>
-        <Navbar />
         <Box className="homepage">
           <Box width={['80%', '65%', 1/2]} my={4} mx='auto' >
             <Card

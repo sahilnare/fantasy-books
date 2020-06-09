@@ -1,6 +1,6 @@
 
 export const deletePost = (id) => {
-  return (dispatch, getState, { getFirebase, getFirestore }) => {
+  return (dispatch, getState, { getFirestore }) => {
     const firebase = getFirestore();
     firebase.collection('posts').doc(id).delete()
       .then(() => {

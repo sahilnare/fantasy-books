@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
-import { Box, Text, Flex, Image } from 'rebass';
+import { Box, Text, Flex } from 'rebass';
 import { Link } from 'react-router-dom';
-import Avatar from '../../../assets/img/wizard.png';
+import { connect } from 'react-redux';
+import SignedInLinks from './SignedInLinks';
+import SignedOutLinks from './SignedOutLinks';
 
 const Navbar = (props) => {
+    console.log(props.auth);
+    const links = props.auth.uid ? <SignedInLinks /> : <SignedOutLinks />;
     return (
       <Flex
         px={2}
@@ -12,32 +16,15 @@ const Navbar = (props) => {
         alignItems='center'>
         <Text p={3} fontSize={4} fontWeight='bold'>Fantasy Books</Text>
         <Box mx='auto' />
-        <Link to='/' style={{textDecoration: 'none'}} >
-          <Text p={3} fontSize={2} fontWeight='bold' color='white' sx={{textDecoration: 'none'}}>Home</Text>
-        </Link>
-        <Link to='/about' style={{textDecoration: 'none'}} >
-          <Text p={3} fontSize={2} fontWeight='bold' color='white' sx={{textDecoration: 'none'}}>About</Text>
-        </Link>
-        <Link to='/posts' style={{textDecoration: 'none'}} >
-          <Text p={3} fontSize={2} fontWeight='bold' color='white' sx={{textDecoration: 'none'}}>Posts</Text>
-        </Link>
-        <Link to='/search' style={{textDecoration: 'none'}} >
-          <Text p={3} fontSize={2} fontWeight='bold' color='white' sx={{textDecoration: 'none'}}>Search</Text>
-        </Link>
-        <Link>
-          <Image
-            src={Avatar}
-            sx={{
-              width: 36,
-              height: 36,
-              borderRadius: 9999,
-              backgroundColor: 'white'
-            }}
-            mx={3}
-          />
-        </Link>
+        { links }
       </Flex>
     );
 }
 
-export default Navbar;
+const mapStateToProps = (state) => {
+  return {
+    auth: state.firebase.auth
+  }
+}
+
+export default connect(mapStateToProps)(Navbar);

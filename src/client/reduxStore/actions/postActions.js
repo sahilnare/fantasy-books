@@ -1,6 +1,6 @@
 
 export const addPost = (post) => {
-  return (dispatch, getState, { getFirebase, getFirestore }) => {
+  return (dispatch, getState, { getFirestore }) => {
     const firebase = getFirestore();
     firebase.collection('posts').add({
       ...post,
