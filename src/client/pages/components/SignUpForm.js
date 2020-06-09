@@ -60,7 +60,7 @@ class SignUpForm extends Component {
 
           case "password":
             {
-              if(value.length >= 7) {
+              if(value.length >= 6) {
                 this.setState(prevState => {
                   let success = { ...prevState.success };
                   success[name] = "c";
@@ -140,7 +140,7 @@ class SignUpForm extends Component {
           {
             this.state.formValid ? null : (
               <Text fontSize={3} color='red' mt={2} mb={2}>
-                Enter a correct email and make sure that the password is more than 6 characters. The username should contain only letters, numbers or _ . -
+                Enter a valid email address and make sure that the password is atleast 6 characters. The username should contain only letters, numbers or _ . -
               </Text>
             )
           }

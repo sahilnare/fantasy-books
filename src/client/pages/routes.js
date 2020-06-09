@@ -7,6 +7,7 @@ import Search from './Search';
 import CreatePost from './CreatePost';
 import LogIn from './LogIn';
 import SignUp from './SignUp';
+import Profile from './Profile';
 
 const routes = [
   {
@@ -37,6 +38,10 @@ const routes = [
   {
     path: '/signup',
     component: SignUp
+  },
+  {
+    path: '/profile',
+    component: Profile
   },
   {
     path: '/createpost',

@@ -41,7 +41,7 @@ class LogInForm extends Component {
 
           case "password":
             {
-              if(value.length >= 7) {
+              if(value.length >= 6) {
                 this.setState(prevState => {
                   let success = { ...prevState.success };
                   success[name] = "c";
@@ -116,7 +116,7 @@ class LogInForm extends Component {
           {
             this.state.formValid ? null : (
               <Text fontSize={3} color='red' mt={2} mb={2}>
-                Enter a correct email and make sure that the password is more than 6 characters.
+                Enter the registered email and make sure that the password is correct.
               </Text>
             )
           }

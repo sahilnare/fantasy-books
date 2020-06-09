@@ -17,7 +17,7 @@ const SignedInLinks = (props) => {
         <Link to='/about' style={{textDecoration: 'none'}} >
           <Text p={3} fontSize={2} fontWeight='bold' color='white' sx={{textDecoration: 'none'}}>About</Text>
         </Link>
-        <Link to='#'>
+        <Link to='/profile'>
           <Image
             src={Avatar}
             sx={{
