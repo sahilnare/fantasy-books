@@ -39,7 +39,7 @@ class Posts extends Component {
                boxShadow: '0 0 16px rgba(0, 0, 0, .25)',
              }} my={3} key={post.id}>
               <Link to={'/posts/' + post.id} style={{color: '#000', textDecoration: 'none'}}>
-                 <Box p={4} width={2/3} mx='auto'>
+                 <Box p={4} width={['90%', '75%', '67%']} mx='auto'>
                    <Heading as='h1' fontSize={4} mb={4}>
                      {post.title}
                    </Heading>

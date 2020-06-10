@@ -44,7 +44,7 @@ class Post extends Component {
             p: 3,
             borderRadius: 2,
             boxShadow: '0 0 16px rgba(0, 0, 0, .25)',
-          }} my={2}>
+          }} mt={2} mb={3}>
           <Heading as='h1' fontSize={5} my={2}>
             {this.props.post[id].title}
           </Heading>

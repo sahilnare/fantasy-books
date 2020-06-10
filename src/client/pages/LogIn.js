@@ -32,7 +32,7 @@ class LogIn extends Component {
             </Card>
           </Box>
           <LogInForm logInUser={this.logInUser} />
-          <Box p={3} width={1/2} mx='auto'>
+          <Box p={3} width={['80%', '65%', 1/2]} mx='auto'>
             {
               this.props.authError ? (
                 <Text fontSize={3} color='red' mt={2} mb={2}>

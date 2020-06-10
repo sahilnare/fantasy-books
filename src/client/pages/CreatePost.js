@@ -25,7 +25,7 @@ class CreatePost extends Component {
                 borderRadius: 2,
                 boxShadow: '0 0 16px rgba(0, 0, 0, .25)',
               }}>
-                <Box p={3} width={1/2} mx='auto'>
+                <Box p={3} width='90%' mx='auto'>
                   <Heading as='h1'>
                     Welcome to Fantasy Books!
                   </Heading>

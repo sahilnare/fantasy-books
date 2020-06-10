@@ -88,12 +88,12 @@ class LogInForm extends Component {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         <Box
         as='form'
         onSubmit={this.handleSubmit}
         py={3}
-        width={1/2}
+        width={['90%', '65%', 1/2]}
         mx='auto'
         >
           <Prompt
@@ -121,7 +121,7 @@ class LogInForm extends Component {
             )
           }
         </Box>
-      </div>
+      </React.Fragment>
     );
   }
 }

@@ -10,7 +10,7 @@ const Comments = ({comments}) => {
             p: 3,
             borderRadius: 2,
             boxShadow: '0 0 16px rgba(0, 0, 0, .25)',
-          }} my={2} key={comment[0]}>
+          }} my={3} key={comment[0]}>
           <Heading as='h1' fontSize={3} my={2}>
             {comment[1].content}
           </Heading>

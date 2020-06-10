@@ -10,12 +10,12 @@ const Navbar = (props) => {
     const links = props.auth.uid ? <SignedInLinks /> : <SignedOutLinks />;
     return (
       <Flex
-        px={2}
+        px={[0, 1, 2]}
         color='white'
         bg='black'
         alignItems='center'>
         <Link to='/' style={{textDecoration: 'none', color: 'white'}} >
-          <Text p={3} fontSize={4} fontWeight='bold'>Fantasy Books</Text>
+          <Text py={3} px={[1, 2, 3]} fontSize={[2, 3, 4]} fontWeight='bold'>Fantasy Books</Text>
         </Link>
         <Box mx='auto' />
         { links }
