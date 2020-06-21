@@ -3,7 +3,7 @@ const initState = {
   authError: null
 }
 
-const postReducer = (state = initState, action) => {
+const authReducer = (state = initState, action) => {
 
   if(action.type === 'LOGIN_SUCCESS') {
     console.log('Login success!');
@@ -47,4 +47,4 @@ const postReducer = (state = initState, action) => {
   }
 }
 
-export default postReducer;
+export default authReducer;

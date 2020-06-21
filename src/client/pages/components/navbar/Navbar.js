@@ -6,7 +6,7 @@ import SignedInLinks from './SignedInLinks';
 import SignedOutLinks from './SignedOutLinks';
 
 const Navbar = (props) => {
-    console.log(props.auth);
+    // console.log(props.auth);
     const links = props.auth.uid ? <SignedInLinks /> : <SignedOutLinks />;
     return (
       <Flex

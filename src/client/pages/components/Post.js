@@ -33,6 +33,7 @@ class Post extends Component {
     const id = this.props.match.params.post_id;
     let post;
     if(this.props.post) {
+      const postInfo = this.props.post[id];
       const date = this.props.post[id].timestamp.toDate();
       let minutes = date.getMinutes();
       if(minutes < 10) {
@@ -46,22 +47,22 @@ class Post extends Component {
             boxShadow: '0 0 16px rgba(0, 0, 0, .25)',
           }} mt={2} mb={3}>
           <Heading as='h1' fontSize={5} my={2}>
-            {this.props.post[id].title}
+            {postInfo.title}
           </Heading>
           <Text fontSize={4} mt={2} mb={2}>
-            {this.props.post[id].content}
+            {postInfo.content}
           </Text>
           <Text fontSize={3} mt={2} mb={2}>
-            By: <Link to={this.props.post[id].posted_by.user_link}>{this.props.post[id].posted_by.username}</Link>
+            By: <Link to={postInfo.posted_by.user_link}>{postInfo.posted_by.username}</Link>
           </Text>
           <Text fontSize={3} color='green' mt={2} mb={2}>
-            Upvotes: {this.props.post[id].upvotes}
+            Upvotes: {postInfo.post.upvotes}
           </Text>
           <Text fontSize={2} my={3}>
             {`${date.getHours()}:${minutes}, ${date.getDate()} ${months[date.getMonth()]}, ${date.getFullYear()}`}
           </Text>
           {
-            this.props.auth.uid ? ( this.props.auth.uid === this.props.post[id].posted_by.user_id ? (
+            this.props.auth.uid ? ( this.props.auth.uid === postInfo.posted_by.user_id ? (
               <Button bg='red' px={2} mr={2} style={{cursor: "pointer"}} onClick={() => this.deletePost(id)}>
                 Delete
               </Button>
@@ -84,8 +85,11 @@ class Post extends Component {
       );
     }
 
-    const comments = this.props.comments ? (
-      <Comments comments={this.props.comments[id]} />
+    if(this.props.post) {
+      console.log(this.props.post[id].comments);
+    }
+    const comments = this.props.post ? (
+      <Comments comments={this.props.post[id].comments} />
     ) : (
       <Card
         sx={{
@@ -114,7 +118,7 @@ class Post extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   const id = ownProps.match.params.post_id;
-  // console.log(state.firestore.data);
+  // console.log(state.firestore);
   return {
     post: state.firestore.data.posts,
     comments: state.firestore.data.comments,
@@ -133,6 +137,6 @@ const mapDispatchToProps = (dispatch) => {
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
-  firestoreConnect((props) => [{ collection: 'posts' }, { collection: 'comments', doc: props.match.params.post_id }]),
+  firestoreConnect((props) => [{ collection: 'posts', doc: props.match.params.post_id }, { collection: 'comments', doc: props.match.params.post_id }]),
   withRouter
 )(Post);
