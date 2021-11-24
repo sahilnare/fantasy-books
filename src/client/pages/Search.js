@@ -101,7 +101,7 @@ class Search extends React.Component {
             <React.Fragment>
               <Box width={1/2} px={2} my={3} mx='auto'>
                 <Heading as='h1' fontSize={4}>
-                  Search your favorite Fantasy Books!
+                  Search your favorite Books!
                 </Heading>
               </Box>
               <Box width={1/2} px={2} mx='auto'>

@@ -27,7 +27,7 @@ class CreatePost extends Component {
               }}>
                 <Box p={3} width='90%' mx='auto'>
                   <Heading as='h1'>
-                    Welcome to Fantasy Books!
+                    Welcome to Shelf Elf!
                   </Heading>
                   <Text fontSize={2} my={2}>
                     Create your post!

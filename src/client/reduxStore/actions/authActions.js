@@ -20,12 +20,14 @@ export const signUpUser = (cred) => {
     firebase.auth().createUserWithEmailAndPassword(
       cred.email, cred.password
     ).then((res) => {
+      console.log(res);
       return firestore.collection('users').doc(res.user.uid).set({
         username: cred.username,
         email: cred.email,
         joined_date: new Date(),
       });
     }).then(() => {
+      console.log("signup success");
       dispatch({ type: 'SIGNUP_SUCCESS' });
     }).catch((err) => {
       dispatch({ type: 'SIGNUP_ERR', err: err });

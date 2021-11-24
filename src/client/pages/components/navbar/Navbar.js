@@ -15,7 +15,7 @@ const Navbar = (props) => {
         bg='black'
         alignItems='center'>
         <Link to='/' style={{textDecoration: 'none', color: 'white'}} >
-          <Text py={3} px={[1, 2, 3]} fontSize={[2, 3, 4]} fontWeight='bold'>Fantasy Books</Text>
+          <Text py={3} px={[1, 2, 3]} fontSize={[2, 3, 4]} fontWeight='bold'>Shelf Elf</Text>
         </Link>
         <Box mx='auto' />
         { links }

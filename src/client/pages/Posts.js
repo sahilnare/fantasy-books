@@ -74,7 +74,7 @@ class Posts extends Component {
         <Box className="homepage">
           <Box width={['80%', '65%', 1/2]} my={4} mx='auto' >
             <Heading as='h1' fontSize={5} my={2}>
-              Fantasy Books!
+              Shelf Elf!
             </Heading>
             <Link to="/createpost">
               <Button variant='primary' fontSize={3} p={2} style={{cursor: "pointer"}}>

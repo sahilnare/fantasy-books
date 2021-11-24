@@ -26,7 +26,7 @@ class SignUp extends Component {
               }}>
                 <Box p={3} width={1/2} mx='auto'>
                   <Heading as='h1'>
-                    Sign up to Storm Fantasy!
+                    Sign up to Shelf Elf!
                   </Heading>
                 </Box>
             </Card>

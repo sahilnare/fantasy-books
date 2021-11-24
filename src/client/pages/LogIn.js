@@ -26,7 +26,7 @@ class LogIn extends Component {
               }}>
                 <Box p={3} width={1/2} mx='auto'>
                   <Heading as='h1'>
-                    Log in to Storm Fantasy!
+                    Log in to Shelf Elf!
                   </Heading>
                 </Box>
             </Card>

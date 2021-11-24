@@ -24,7 +24,7 @@ class Home extends Component {
                 </Box>
                 <Box p={3} width={1/2} mx='auto'>
                   <Heading as='h1'>
-                    Welcome to Fantasy Books!
+                    Welcome to Shelf Elf!
                   </Heading>
                   <Text fontSize={2} my={2}>
                     Behold!
@@ -34,7 +34,7 @@ class Home extends Component {
                   !this.props.auth.uid ? (
                     <Box p={3} width={1/2} mx='auto'>
                       <Heading as='h1'>
-                        Log in to discuss about fantasy books!
+                        Log in to discuss about books!
                       </Heading>
                     </Box>
                   ) : null

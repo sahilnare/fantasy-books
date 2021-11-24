@@ -5,7 +5,9 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import { Link, withRouter } from 'react-router-dom';
 import { deletePost } from '../../reduxStore/actions/deleteActions';
+import { addComment } from '../../reduxStore/actions/postActions';
 import Comments from './Comments';
+import AddComments from './AddComments';
 
 const months = {
   0: 'Jan',
@@ -27,6 +29,10 @@ class Post extends Component {
   deletePost = (id) => {
     this.props.deletePost(id);
     this.props.history.push('/posts');
+  }
+
+  addComment = (comment) => {
+    this.props.addComment(comment);
   }
 
   render() {
@@ -54,9 +60,6 @@ class Post extends Component {
           </Text>
           <Text fontSize={3} mt={2} mb={2}>
             By: <Link to={postInfo.posted_by.user_link}>{postInfo.posted_by.username}</Link>
-          </Text>
-          <Text fontSize={3} color='green' mt={2} mb={2}>
-            Upvotes: {postInfo.post.upvotes}
           </Text>
           <Text fontSize={2} my={3}>
             {`${date.getHours()}:${minutes}, ${date.getDate()} ${months[date.getMonth()]}, ${date.getFullYear()}`}
@@ -88,6 +91,7 @@ class Post extends Component {
     if(this.props.post) {
       console.log(this.props.post[id].comments);
     }
+
     const comments = this.props.post ? (
       <Comments comments={this.props.post[id].comments} />
     ) : (
@@ -109,6 +113,7 @@ class Post extends Component {
           <Box width={['80%', '65%', 1/2]} my={4} mx='auto' >
             {post}
             {comments}
+            <AddComments addComment={this.addComment} />
           </Box>
         </Box>
       </React.Fragment>
@@ -130,6 +135,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     deletePost: (id) => {
       dispatch(deletePost(id));
+    },
+    addComment: (comment) => {
+      dispatch(addComment(comment));
     }
   }
 }
