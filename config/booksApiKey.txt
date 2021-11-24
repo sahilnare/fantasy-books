@@ -1,32 +1,3 @@
 Here is your developer key for using the Goodreads API.
 This key must be appended to every request using the form variable 'key'.
 (If you're using our write API, you'll need your secret too.)
-
-key: WFcaAL0zWUr8nbJJMw24mw
-secret: dm9Fw4GVXG6xqOKZnR2qYzLRkHBAWHQZfQ37AdKc
-Query:
-https://www.goodreads.com/search/index.xml?key=WFcaAL0zWUr8nbJJMw24mw&q=Mistborn
-
-
-Google Books API Key:
-AIzaSyAbXsqqvShVCLR3zHTr_01CD1nkkCB5Bto
-
-Searching: q='query'
-https://www.googleapis.com/books/v1/volumes?q=flowers&key=AIzaSyAbXsqqvShVCLR3zHTr_01CD1nkkCB5Bto
-
-Parameters: inauthor:keyes
-https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=AIzaSyAbXsqqvShVCLR3zHTr_01CD1nkkCB5Bto
-
-Filter: filter=free-ebooks
-https://www.googleapis.com/books/v1/volumes?q=flowers&filter=free-ebooks&key=AIzaSyAbXsqqvShVCLR3zHTr_01CD1nkkCB5Bto
-
-maxResults = 5
-https://www.googleapis.com/books/v1/volumes?q=mistborn&maxResults=5&key=AIzaSyAbXsqqvShVCLR3zHTr_01CD1nkkCB5Bto
-
-Specific book:
-https://www.googleapis.com/books/v1/volumes/volumeId
-Example: (Mistborn)
-https://www.googleapis.com/books/v1/volumes/t_ZYYXZq4RgC
-
-Public Bookshelves:
-https://www.googleapis.com/books/v1/users/1112223334445556677/bookshelves&key=AIzaSyAbXsqqvShVCLR3zHTr_01CD1nkkCB5Bto
